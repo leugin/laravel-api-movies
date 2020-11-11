@@ -13,7 +13,9 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5"
+        "laravel/passport": "^10.0",
+        "laravel/tinker": "^2.5",
+        "leugin/api-response": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -22,6 +24,12 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "git@github.com:leugin/ApiResponse.git"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
