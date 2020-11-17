@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 /docker/data/
 .idea
+/public/vendor/
+composer.lock
+/docker/logs/
