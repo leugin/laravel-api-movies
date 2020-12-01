@@ -53,9 +53,15 @@ php artisan app:install
 
 #### Routes
 
-| route        | description           | required token  |
-| ------------- |:-------------:| -----:|
-|/api/v1/auth/login   |login | no |
-| api/v1/movies    | list of movies | yes |
+| route        | description           | method |required token  |
+| -------------|:---------------------:| ---------------:| ----: |
+|/api/v1/auth/login   |login |GET| NO |
+| api/v1/movies    | list of movies |GET |YES|
+| api/v1/movies   | store movie |POST|YES|
+| api/v1/movies/{id}   | update movie |PUT|YES|
+| api/v1/movies/{id}   | delete movie |DELETE|YES|
+| api/v1/movies/{id}   | show movie |GET|YES|
+ 
+
 
 
