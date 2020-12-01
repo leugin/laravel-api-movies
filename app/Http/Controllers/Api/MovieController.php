@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\StoreMovieRequest;
 use App\Http\Resources\MovieResource;
 use App\Models\Movie;
 use App\SearchableRules\Movie\MovieOptionsRule;
@@ -34,5 +35,11 @@ class MovieController extends Controller
         $query = $this->repository->newQuery();
         $this->searchableService->applyArray($query, new MovieOptionsRule(), $request->all());
         return ApiResponse::collection(MovieResource::collection($query->paginate(20)));
+    }
+
+    public function store(StoreMovieRequest $request)
+    {
+        $movie = $this->repository->newQuery()->create($request->validated());
+        return ApiResponse::created(new MovieResource($movie));
     }
 }

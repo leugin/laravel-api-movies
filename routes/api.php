@@ -21,6 +21,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'auth', 'namespace' => 'Api'], function () {
         Route::post('login', 'LoginController@login');
     });
-    Route::get('movies', 'Api\MovieController@index')->middleware('auth:api');
+    Route::apiResource('movies', 'Api\MovieController')->only([
+        'index','store'
+    ])->middleware('auth:api');
 
 });
