@@ -3,30 +3,28 @@
 
 namespace App\Services\Searchable;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class EloquentSearchColumns
+class EloquentSearchColumns implements ApplicableOptions
 {
     private $eloquent;
     private $searchableRules;
 
     /**
      * EloquentSearchColumns constructor.
-     * @param Model|ByColumnSearchable|\Illuminate\Database\Eloquent\Builder $eloquent
+     * @param Model|ByColumnOptions|Builder $eloquent
      * @param $searchableRules
      * @throws \Exception
      */
-    public function __construct($eloquent, ?ByColumnSearchable $searchableRules = null )
+    public function __construct($eloquent, ?ByColumnOptions $searchableRules )
     {
         $this->eloquent = $eloquent;
-        if (!$searchableRules  && !($eloquent instanceof ByColumnSearchable)){
-            throw new \Exception(" eloquent must by instance of ByColumnSearchable or should pass the parameter searchableRules");
-        }
-        $this->searchableRules = !$searchableRules ?   $eloquent : $searchableRules;
+        $this->searchableRules = $searchableRules;
     }
 
-    public function apply(array  $values = []){
-        $columns = $this->searchableRules->searchableColumns();
+    public function apply($values = []){
+        $columns = $this->searchableRules->optionsByColumns();
         $query = $this->eloquent;
         foreach ($values as $key => $value) {
             if (array_key_exists($key, $columns)) {
